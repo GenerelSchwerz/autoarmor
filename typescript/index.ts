@@ -120,7 +120,7 @@ export default function plugin(bot: Bot) {
 export class autoArmor {
     bot: Bot
     enabled: boolean
-    autoEquip: boolean
+    autoReplace: boolean
     waitTick: number
     priority: string
     bannedArmor: string[]
@@ -133,7 +133,7 @@ export class autoArmor {
     constructor(bot: Bot, options?: autoArmorOptions) {
         this.bot = bot
         this.enabled = options?.disabled ?? true,
-        this.autoEquip = options?.autoReplace ?? false,
+        this.autoReplace = options?.autoReplace ?? false,
         this.waitTick = options?.waitTick ?? 1
         this.priority = options?.priority ?? 'raw',  //* planned "durability" | "enchantments" | "armorType" | "raw"
         this.bannedArmor = options?.bannedArmor ?? [],
@@ -164,11 +164,11 @@ export class autoArmor {
     }
 
     disableAuto() {
-        this.autoEquip = false
+        this.autoReplace = false
     }
 
     enableAuto() {
-        this.autoEquip = true
+        this.autoReplace = true
     }
 
 
@@ -206,7 +206,7 @@ export class autoArmor {
 
 
     async unequipArmor(waitTicks?: number) {
-        if (this.autoEquip) return this.bot.chat("I can't remove my armor: autoEquip is active.")
+        if (this.autoReplace) return this.bot.chat("I can't remove my armor: autoEquip is active.")
         for (let i = 0; i < armorPieces.length; i++) { 
             await this.bot.waitForTicks(waitTicks ?? this.waitTick);
             await this.bot.unequip(armorPieces[i])
@@ -292,7 +292,7 @@ export class autoArmor {
     }
 
     onHealthArmorCheck() {
-        if (!this.enabled || !this.autoEquip) return;
+        if (!this.enabled || !this.autoReplace) return;
         try {
             this.emitWrapper(this.checkForNoArmor);
         }
@@ -301,7 +301,7 @@ export class autoArmor {
 
 
     selfArmorCheck(who: Entity) {
-        if (!this.enabled || who !== this.bot.entity || !this.autoEquip) return;
+        if (!this.enabled || who !== this.bot.entity || !this.autoReplace) return;
         try {
             this.emitWrapper(this.checkForNoArmor);
         }

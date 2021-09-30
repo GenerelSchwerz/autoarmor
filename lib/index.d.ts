@@ -25,7 +25,7 @@ export default function plugin(bot: Bot): void;
 export declare class autoArmor {
     bot: Bot;
     enabled: boolean;
-    autoEquip: boolean;
+    autoReplace: boolean;
     waitTick: number;
     priority: string;
     bannedArmor: string[];

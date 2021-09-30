@@ -93,7 +93,7 @@ class autoArmor {
         var _a, _b, _c, _d, _e, _f, _g, _h;
         this.bot = bot;
         this.enabled = (_a = options === null || options === void 0 ? void 0 : options.disabled) !== null && _a !== void 0 ? _a : true,
-            this.autoEquip = (_b = options === null || options === void 0 ? void 0 : options.autoReplace) !== null && _b !== void 0 ? _b : false,
+            this.autoReplace = (_b = options === null || options === void 0 ? void 0 : options.autoReplace) !== null && _b !== void 0 ? _b : false,
             this.waitTick = (_c = options === null || options === void 0 ? void 0 : options.waitTick) !== null && _c !== void 0 ? _c : 1;
         this.priority = (_d = options === null || options === void 0 ? void 0 : options.priority) !== null && _d !== void 0 ? _d : 'raw', //* planned "durability" | "enchantments" | "armorType" | "raw"
             this.bannedArmor = (_e = options === null || options === void 0 ? void 0 : options.bannedArmor) !== null && _e !== void 0 ? _e : [],
@@ -118,10 +118,10 @@ class autoArmor {
         this.enabled = true;
     }
     disableAuto() {
-        this.autoEquip = false;
+        this.autoReplace = false;
     }
     enableAuto() {
-        this.autoEquip = true;
+        this.autoReplace = true;
     }
     addBannedArmor(armorName) {
         this.bannedArmor.push(armorName);
@@ -152,7 +152,7 @@ class autoArmor {
     }
     unequipArmor(waitTicks) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (this.autoEquip)
+            if (this.autoReplace)
                 return this.bot.chat("I can't remove my armor: autoEquip is active.");
             for (let i = 0; i < armorPieces.length; i++) {
                 yield this.bot.waitForTicks(waitTicks !== null && waitTicks !== void 0 ? waitTicks : this.waitTick);
@@ -234,7 +234,7 @@ class autoArmor {
         });
     }
     onHealthArmorCheck() {
-        if (!this.enabled || !this.autoEquip)
+        if (!this.enabled || !this.autoReplace)
             return;
         try {
             this.emitWrapper(this.checkForNoArmor);
@@ -242,7 +242,7 @@ class autoArmor {
         catch (e) { }
     }
     selfArmorCheck(who) {
-        if (!this.enabled || who !== this.bot.entity || !this.autoEquip)
+        if (!this.enabled || who !== this.bot.entity || !this.autoReplace)
             return;
         try {
             this.emitWrapper(this.checkForNoArmor);
