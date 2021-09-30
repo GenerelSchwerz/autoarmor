@@ -135,7 +135,7 @@ export class autoArmor {
         this.enabled = options?.disabled ?? true,
         this.autoEquip = options?.autoEquip ?? false,
         this.waitTick = options?.waitTick ?? 1
-        this.priority = options?.priority ?? 'foodPoints',
+        this.priority = options?.priority ?? 'raw',  //* planned "durability" | "enchantments" | "armorType" | "raw"
         this.bannedArmor = options?.bannedArmor ?? [],
         this.wornArmor = options?.wornArmor ?? new Map<string, string>()
         this.ignoreInventoryCheck = options?.ignoreInventoryCheck ?? false,
@@ -166,6 +166,17 @@ export class autoArmor {
     enableAuto() {
         this.autoEquip = true
     }
+
+
+    addBannedArmor(armorName: string) {
+        this.bannedArmor.push(armorName)
+    }
+
+
+    removeBannedArmor(armorName: string) {
+        this.bannedArmor = this.bannedArmor.filter(name => name !== armorName)
+    }
+
 
     timeoutAfter(time: number, message: string) {
         return new Promise((_, reject) => {

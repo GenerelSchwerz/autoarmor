@@ -39,6 +39,8 @@ export declare class autoArmor {
     enable(): void;
     disableAuto(): void;
     enableAuto(): void;
+    addBannedArmor(armorName: string): void;
+    removeBannedArmor(armorName: string): void;
     timeoutAfter(time: number, message: string): Promise<unknown>;
     calculateWorth(armorName: string, enchantments?: NormalizedEnchant[]): any;
     emitWrapper(func: (...args: any[]) => Promise<any> | Promise<void> | void, ...args: any): Promise<void>;
