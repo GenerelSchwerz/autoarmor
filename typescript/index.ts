@@ -140,9 +140,13 @@ export class autoArmor {
         this.wornArmor = options?.wornArmor ?? new Map<string, string>()
         this.ignoreInventoryCheck = options?.ignoreInventoryCheck ?? false,
         this.checkOnItemPickup = options?.checkOnItemPickup ?? true,
-
-        this.items = require('minecraft-data')(this.bot.version).items;
         this.currentlyEquipping = false
+
+        this.items = {}
+        this.bot.once("spawn", () => {
+            this.items = require('minecraft-data')(this.bot.version).items;
+        })
+        
         this.bot.on('entityAttributes', this.selfArmorCheck.bind(this));
         this.bot.on('health', this.onHealthArmorCheck.bind(this));
         this.bot.on('spawn', this.disable.bind(this));
