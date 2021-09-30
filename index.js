@@ -93,7 +93,7 @@ class autoArmor {
         var _a, _b, _c, _d, _e, _f, _g, _h;
         this.bot = bot;
         this.enabled = (_a = options === null || options === void 0 ? void 0 : options.disabled) !== null && _a !== void 0 ? _a : true,
-            this.autoEquip = (_b = options === null || options === void 0 ? void 0 : options.autoEquip) !== null && _b !== void 0 ? _b : false,
+            this.autoEquip = (_b = options === null || options === void 0 ? void 0 : options.autoReplace) !== null && _b !== void 0 ? _b : false,
             this.waitTick = (_c = options === null || options === void 0 ? void 0 : options.waitTick) !== null && _c !== void 0 ? _c : 1;
         this.priority = (_d = options === null || options === void 0 ? void 0 : options.priority) !== null && _d !== void 0 ? _d : 'raw', //* planned "durability" | "enchantments" | "armorType" | "raw"
             this.bannedArmor = (_e = options === null || options === void 0 ? void 0 : options.bannedArmor) !== null && _e !== void 0 ? _e : [],

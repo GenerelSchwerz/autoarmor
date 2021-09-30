@@ -93,7 +93,7 @@ interface NormalizedEnchant {
 
 interface autoArmorOptions {
     disabled: boolean,
-    autoEquip: boolean,
+    autoReplace: boolean,
     waitTick: number,
     priority: string,
     bannedArmor: string[],
@@ -133,7 +133,7 @@ export class autoArmor {
     constructor(bot: Bot, options?: autoArmorOptions) {
         this.bot = bot
         this.enabled = options?.disabled ?? true,
-        this.autoEquip = options?.autoEquip ?? false,
+        this.autoEquip = options?.autoReplace ?? false,
         this.waitTick = options?.waitTick ?? 1
         this.priority = options?.priority ?? 'raw',  //* planned "durability" | "enchantments" | "armorType" | "raw"
         this.bannedArmor = options?.bannedArmor ?? [],

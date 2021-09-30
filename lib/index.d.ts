@@ -7,7 +7,7 @@ interface NormalizedEnchant {
 }
 interface autoArmorOptions {
     disabled: boolean;
-    autoEquip: boolean;
+    autoReplace: boolean;
     waitTick: number;
     priority: string;
     bannedArmor: string[];
