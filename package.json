@@ -4,6 +4,7 @@
   "description": "Mineflayer plugin to auto equip armor to a bot.",
   "main": "index.js",
   "scripts": {
+    "build": "npx tsc; cp lib/index.js index.js",
     "test": "node ./test/index.js",
     "prepare": "tsc"
 },
