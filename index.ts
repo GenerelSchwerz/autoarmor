@@ -1,7 +1,7 @@
-import { Item } from "minecraft-data";
+
 import { Bot } from "mineflayer";
 import { Entity } from "prismarine-entity";
-import {ESMap} from "typescript"
+import { ESMap } from "typescript"
 
 type ArmorPieces = "head" | "torso"| "legs" | "feet" | "off-hand"
 
