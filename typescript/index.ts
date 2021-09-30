@@ -178,7 +178,7 @@ export class autoArmor {
     async emitWrapper(func: (...args: any[]) => Promise<any> | Promise<void> | void, ...args: any) {
         if (this.currentlyEquipping) return;
         this.currentlyEquipping = true;
-        await func(...args);
+        await func.bind(this)(...args);
         this.currentlyEquipping = false;
     }
 
