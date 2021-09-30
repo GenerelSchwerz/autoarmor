@@ -101,6 +101,9 @@ declare module "mineflayer" {
     interface Bot {
         autoArmor: autoArmor;
     }
+    interface BotEvents {
+        
+    }
 }
 
 export default function plugin(bot: Bot) {
@@ -183,7 +186,7 @@ export class autoArmor {
     }
 
     async unequipArmor(waitTicks?: number) {
-        if (this.autoReplace) return this.bot.chat("I can't remove my armor: autoEquip is active.");
+        if (this.autoReplace) return;
         for (let i = 0; i < armorPieces.length; i++) {
             await this.bot.waitForTicks(waitTicks ?? this.waitTick);
             await this.bot.unequip(armorPieces[i]);

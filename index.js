@@ -144,7 +144,7 @@ class autoArmor {
     unequipArmor(waitTicks) {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.autoReplace)
-                return this.bot.chat("I can't remove my armor: autoEquip is active.");
+                return;
             for (let i = 0; i < armorPieces.length; i++) {
                 yield this.bot.waitForTicks(waitTicks !== null && waitTicks !== void 0 ? waitTicks : this.waitTick);
                 yield this.bot.unequip(armorPieces[i]);

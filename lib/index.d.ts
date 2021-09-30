@@ -20,6 +20,8 @@ declare module "mineflayer" {
     interface Bot {
         autoArmor: autoArmor;
     }
+    interface BotEvents {
+    }
 }
 export default function plugin(bot: Bot): void;
 export declare class autoArmor {
