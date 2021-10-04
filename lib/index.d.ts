@@ -1,5 +1,6 @@
 import { Bot } from "mineflayer";
 import { Entity } from "prismarine-entity";
+import { Item } from "prismarine-item";
 import { ESMap } from "typescript";
 interface NormalizedEnchant {
     name: string;
@@ -21,6 +22,9 @@ declare module "mineflayer" {
         autoArmor: autoArmor;
     }
     interface BotEvents {
+        autoArmorStartedEquipping: () => void;
+        autoArmorEquippedItem: (item: Item) => void;
+        autoArmorStoppedEquipping: () => void;
     }
 }
 export default function plugin(bot: Bot): void;
@@ -42,16 +46,16 @@ export declare class autoArmor {
     disableAuto(): void;
     enableAuto(): void;
     addBannedArmor(armorName: string): void;
-    removeBannedArmor(armorName: string): void;
+    removeBannedArmor(...armorNames: string[]): void;
     calculateWorth(armorName: string, enchantments?: NormalizedEnchant[]): any;
+    armorFromGround(item: Entity): void;
     emitWrapper(func: (...args: any[]) => Promise<any> | Promise<void> | void, ...args: any): Promise<void>;
     unequipArmor(waitTicks?: number): Promise<void>;
     equipArmor(waitTicks?: number): Promise<void>;
-    checkForNoArmor(): Promise<void>;
-    armorFromGround(item: Entity): void;
-    armorPiece(target: string, callback?: (error: any) => void, manual?: boolean): Promise<void>;
-    onHealthArmorCheck(): void;
-    selfArmorCheck(who: Entity): void;
+    checkForNoArmor(waitTicks?: number): Promise<void>;
+    armorPiece(target: string, manual?: boolean): Promise<Error | null | undefined>;
+    onHealthArmorCheck(): Promise<void>;
+    selfArmorCheck(who: Entity): Promise<void>;
     playerCollectCheck(who: Entity, item: Entity): Promise<void>;
 }
 export {};
